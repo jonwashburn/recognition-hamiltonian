@@ -1,0 +1,10 @@
+name = "RecognitionHamiltonian"
+version = "0.1.0"
+defaultTargets = ["recognitionhamiltonian"]
+
+[[lean_lib]]
+name = "RecognitionHamiltonian"
+
+[[lean_exe]]
+name = "recognitionhamiltonian"
+root = "Main"
