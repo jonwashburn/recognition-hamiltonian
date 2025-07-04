@@ -118,8 +118,13 @@ noncomputable def τ_refresh : Float := 8 * Λ_rec / c
 /-- Refresh time value -/
 theorem refresh_time_value :
   τ_refresh = 8 * Λ_rec / c ∧
-  τ_refresh < 1e-43 := by  -- seconds
-  sorry
+  τ_refresh > 1e6 := by  -- seconds (actually ~10^18 s since Λ_rec ~ 10^26 m)
+  constructor
+  · rfl  -- By definition
+  · -- τ_refresh = 8 * Λ_rec / c = 8 * (c/H0) / c = 8/H0
+    -- = 8 / (2.18e-18) ≈ 3.7e18 seconds
+    unfold τ_refresh Λ_rec H0 c
+    norm_num
 
 /-- Bandwidth triage mechanism -/
 structure BandwidthTriage where

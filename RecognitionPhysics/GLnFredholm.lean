@@ -27,10 +27,42 @@ def isPrimeSimple (n : Nat) : Bool :=
   n > 1 && (List.range (n - 1)).all (fun d => d < 2 || n % (d + 1) ≠ 0)
 
 /-- First few primes for concrete calculations -/
-def prime2 : Prime := ⟨2, by sorry⟩
-def prime3 : Prime := ⟨3, by sorry⟩
-def prime5 : Prime := ⟨5, by sorry⟩
-def prime7 : Prime := ⟨7, by sorry⟩
+def prime2 : Prime := ⟨2, by
+  constructor
+  · -- 2 > 1
+    decide
+  · -- ∀ d : Nat, d ∣ 2 → d = 1 ∨ d = 2
+    intro d hd
+    -- For small primes, we can check all divisors
+    sorry -- Would enumerate: divisors of 2 are {1, 2}
+⟩
+
+def prime3 : Prime := ⟨3, by
+  constructor
+  · -- 3 > 1
+    decide
+  · -- ∀ d : Nat, d ∣ 3 → d = 1 ∨ d = 3
+    intro d hd
+    sorry -- Would enumerate: divisors of 3 are {1, 3}
+⟩
+
+def prime5 : Prime := ⟨5, by
+  constructor
+  · -- 5 > 1
+    decide
+  · -- ∀ d : Nat, d ∣ 5 → d = 1 ∨ d = 5
+    intro d hd
+    sorry -- Would enumerate: divisors of 5 are {1, 5}
+⟩
+
+def prime7 : Prime := ⟨7, by
+  constructor
+  · -- 7 > 1
+    decide
+  · -- ∀ d : Nat, d ∣ 7 → d = 1 ∨ d = 7
+    intro d hd
+    sorry -- Would enumerate: divisors of 7 are {1, 7}
+⟩
 
 /-- List of first few primes (for numerical work) -/
 def first_primes : List Prime := [prime2, prime3, prime5, prime7]
@@ -160,7 +192,13 @@ theorem trace_formula (n : Nat) (π : ∀ p : Prime, SatakeParams n p)
 /-- Archimedean cancellation lemma -/
 theorem archimedean_cancellation (n : Nat) (s : Float × Float) :
   ∃ L : Float, L = 0 ↔ ε = φ - 1 := by
-  sorry  -- Would use: exists 0; simp
+  -- The cancellation occurs exactly when ε = φ - 1, which is true by definition
+  use 0
+  constructor
+  · intro _
+    rfl  -- ε is defined as φ - 1
+  · intro _
+    rfl  -- 0 = 0
 
 /-- Fredholm determinant expansion -/
 theorem fredholm_expansion (n : Nat) (π : ∀ p : Prime, SatakeParams n p)
