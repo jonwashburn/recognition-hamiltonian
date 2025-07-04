@@ -96,7 +96,13 @@ theorem MOND_value :
   1.16e-10 < a_MOND ∧ a_MOND < 1.18e-10 := by
   -- c² ≈ 9e16, λ_rec ≈ 1.6e-35
   -- a_MOND ≈ 9e16 / (6.28 * 1.6e-35) ≈ 1.17e-10
-  sorry
+  constructor
+  · -- Show 1.16e-10 < a_MOND
+    unfold a_MOND PhysicalConstants.c PhysicalConstants.λ_rec
+    sorry -- Would compute numerically
+  · -- Show a_MOND < 1.18e-10
+    unfold a_MOND PhysicalConstants.c PhysicalConstants.λ_rec
+    sorry -- Would compute numerically
 
 /-- MOND scale emergence from trace formula -/
 theorem MOND_scale_emergence :
@@ -141,7 +147,9 @@ def Omega_matter : Float := 0.308
 /-- Check closure relation -/
 theorem closure_relation :
   Omega_Lambda + Omega_matter = 1 := by
-  sorry  -- 0.692 + 0.308 = 1.000
+  unfold Omega_Lambda Omega_matter
+  -- 0.692 + 0.308 = 1.000
+  norm_num
 
 /-- Sensitivity coefficient -/
 def sensitivity_coeff : Float := 2.3
@@ -226,7 +234,22 @@ theorem rotation_slope_values :
   rotation_slopes.get? 0 = some (-0.382) ∧
   rotation_slopes.get? 1 = some (-0.236) ∧
   rotation_slopes.get? 2 = some (-0.146) := by
-  sorry  -- Numerical computation
+  unfold rotation_slopes
+  -- -1/φ² ≈ -1/2.618 ≈ -0.382
+  -- -1/φ³ ≈ -1/4.236 ≈ -0.236
+  -- -1/φ⁴ ≈ -1/6.854 ≈ -0.146
+  simp [List.get?]
+  constructor
+  · -- First slope: -1/φ²
+    unfold φ
+    sorry -- Would compute: -1/((1+√5)/2)² ≈ -0.382
+  constructor
+  · -- Second slope: -1/φ³
+    unfold φ
+    sorry -- Would compute: -1/((1+√5)/2)³ ≈ -0.236
+  · -- Third slope: -1/φ⁴
+    unfold φ
+    sorry -- Would compute: -1/((1+√5)/2)⁴ ≈ -0.146
 
 /-- Galaxy rotation curve prediction -/
 theorem galaxy_rotation_quantization :
