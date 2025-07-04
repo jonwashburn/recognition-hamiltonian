@@ -17,20 +17,6 @@ noncomputable def φ : Float := (1 + Float.sqrt 5) / 2
 /-- The cancellation shift ε = φ - 1 = 1/φ -/
 noncomputable def ε : Float := φ - 1
 
-/-- Basic properties of the golden ratio -/
-theorem phi_properties : φ > 0 ∧ ε > 0 ∧ ε = 1 / φ ∧ φ * ε = 1 := by
-  constructor
-  · -- φ > 0
-    sorry -- Would show (1 + √5)/2 > 0
-  constructor
-  · -- ε > 0
-    sorry -- Would show φ - 1 > 0
-  constructor
-  · -- ε = 1/φ
-    sorry -- Classic golden ratio property
-  · -- φ * ε = 1
-    sorry -- Follows from φ² = φ + 1
-
 /-- Type representing a prime number -/
 structure Prime where
   val : Nat

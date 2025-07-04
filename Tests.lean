@@ -94,6 +94,16 @@ def test_MOND : IO Unit := do
   let discrepancy := Float.exp (log_a_MOND) / 1.17e-10
   IO.println s!"\nDiscrepancy factor: {discrepancy}"
 
+  -- In MOND test section replace computation with new formula
+  let pi := 3.14159265358979323846
+  let H0 := 2.18e-18
+  let lambda_cosmic := 299792458.0 / H0
+  let a_MOND := (299792458.0^2) / (2 * pi * lambda_cosmic)
+  -- Output
+  IO.println s!"Λ_rec = {lambda_cosmic} m"
+  IO.println s!"a_MOND = {a_MOND} m/s²"
+  IO.println s!"a_MOND ×10^10 = {a_MOND * 1e10}"
+
 /-- Test rotation curve slopes -/
 def test_slopes : IO Unit := do
   let phi := (1 + Float.sqrt 5) / 2
