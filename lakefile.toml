@@ -5,6 +5,12 @@ defaultTargets = ["recognitionhamiltonian"]
 [[lean_lib]]
 name = "RecognitionHamiltonian"
 
+[[lean_lib]]
+name = "RecognitionPhysics"
+
+[[lean_lib]]
+name = "Tests"
+
 [[lean_exe]]
 name = "recognitionhamiltonian"
 root = "Main"
